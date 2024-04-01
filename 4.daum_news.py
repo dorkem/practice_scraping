@@ -1,10 +1,17 @@
+import os
+from dotenv import load_dotenv
 import requests
 from bs4 import BeautifulSoup
 
-url = "https://news.daum.net/"
+# .env 파일에서 환경 변수 로드
+load_dotenv()
 
-headers={
-    "User-Agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36s"
+# 환경 변수에서 User-Agent 값 가져오기
+user_agent = os.getenv("USER_AGENT")
+
+# headers 딕셔너리에 User-Agent 적용
+headers = {
+    "User-Agent": user_agent
 }
 
 req = requests.get(url, headers=headers)

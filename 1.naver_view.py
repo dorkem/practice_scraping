@@ -1,15 +1,24 @@
+import os
+from dotenv import load_dotenv
 import requests
 from bs4 import BeautifulSoup
+
+# .env 파일에서 환경 변수 로드
+load_dotenv()
+
+# 환경 변수에서 User-Agent 값 가져오기
+user_agent = os.getenv("USER_AGENT")
+
+# headers 딕셔너리에 User-Agent 적용
+headers = {
+    "User-Agent": user_agent
+}
 
 base_url = "https://search.naver.com/search.naver?sm=tab_hty.top&where=view&query="
 keyword = input("검색어를 입력하세요 : ")
 
 url = base_url + keyword
 #print(url)
-
-headers={
-    "User-Agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36s"
-}
 
 req = requests.get(url, headers=headers)
 

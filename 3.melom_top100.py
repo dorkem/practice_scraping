@@ -1,6 +1,18 @@
+import os
+from dotenv import load_dotenv
 import requests
 from bs4 import BeautifulSoup
 
+# .env 파일에서 환경 변수 로드
+load_dotenv()
+
+# 환경 변수에서 User-Agent 값 가져오기
+user_agent = os.getenv("USER_AGENT")
+
+# headers 딕셔너리에 User-Agent 적용
+headers = {
+    "User-Agent": user_agent
+}
 
 def get_song_nums(song_num_text):
     # song_num = []
@@ -11,11 +23,6 @@ def get_song_nums(song_num_text):
     # song_num="".join(song_num)
     
     return song_num
-    
-
-headers = {
-    "User-Agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36s"
-}
 
 url = "https://www.melon.com/chart/index.htm"
 
